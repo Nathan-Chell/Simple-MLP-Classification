@@ -5,7 +5,8 @@ Show the use and limitations of a perceptron and then build upon it to classify 
 
 Simple_neuron and Simple MLP show the limitations of a perceptron on non linear boolean function and how to overcome them
 
-
+##### Requirements:
+    pip install -r requirements.txt
 ###### Usage:
     python ./src/Single_Neuron.py
     python ./src/Simple_MLP.py
