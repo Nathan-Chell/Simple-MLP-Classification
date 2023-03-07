@@ -23,19 +23,28 @@ def Split_data(X, y):
 def train_MLP(X_train, y_train, X_test, y_test, layers=(100,)):
     
     
-    model = MLPClassifier(hidden_layer_sizes=layers, max_iter=1000, solver='adam')
+    model = MLPClassifier(hidden_layer_sizes=layers, max_iter=2000, solver='adam')
     model.fit(X_train, y_train)
     
-    print("Test accuracy: {}".format(model.score(X_test, y_test)))
-    print("Confusion matrix: {}".format(confusion_matrix(y_test, model.predict(X_test))))
+    #print("Hidden layer size: {}".format(layers))
+    #print("Test accuracy: {}".format(model.score(X_test, y_test)))
+    #print("Confusion matrix: {}".format(confusion_matrix(y_test, model.predict(X_test))))
     
+    return model.score(X_test, y_test)
 
 def main():
     
     X, y = get_data()
     X_train, X_test, y_train, y_test = Split_data(X, y)
     
-    train_MLP(X_train, y_train, X_test, y_test)
+    iter = 3
+    total_accuracy = 0
+    layers = (10,)
+    
+    for i in range(iter):
+        total_accuracy += train_MLP(X_train, y_train, X_test, y_test, layers)
+        
+    print("Average accuracy: {} for layer size: {}".format(total_accuracy/iter, layers))
     
 if __name__ == "__main__":
     
